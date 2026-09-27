@@ -1,4 +1,4 @@
-"""Configuration management for Boxarr using pydantic-settings."""
+"""Configuration management for Bollyarr using pydantic-settings."""
 
 import os
 import shutil
@@ -30,7 +30,7 @@ MIN_GROSS_MAX = 1e12
 def format_min_gross(value: float) -> str:
     """Format a minimum-gross threshold as a dollar amount, without the sign.
 
-    Grosses are whole dollars and so is every threshold Boxarr saves, so the
+    Grosses are whole dollars and so is every threshold Bollyarr saves, so the
     usual output matches the gross printed beside it. A hand-edited fractional
     value keeps its cents instead of being rounded away - "$1,200,000 below
     minimum $1,200,000" reads as a broken comparison rather than a rounded one,
@@ -170,7 +170,7 @@ class Settings(BaseSettings):
         description="Configuration for root folder mappings",
     )
 
-    # Boxarr Server Configuration
+    # Bollyarr Server Configuration
     boxarr_host: str = Field(default="0.0.0.0", description="Host to bind server to")
     boxarr_port: int = Field(
         default=8888, ge=1, le=65535, description="Web interface port"
@@ -180,7 +180,7 @@ class Settings(BaseSettings):
     )
     boxarr_url_base: str = Field(
         default="",
-        description="URL base path for reverse proxy (e.g., 'boxarr' for /boxarr/)",
+        description="URL base path for reverse proxy (e.g., 'bollyarr' for /bollyarr/)",
     )
 
     # Scheduler Configuration
@@ -266,7 +266,7 @@ class Settings(BaseSettings):
         default=True, description="Auto tag movies added to Radarr"
     )
     boxarr_features_auto_tag_text: str = Field(
-        default="boxarr", description="Tag label for movies added to Radarr"
+        default="bollyarr", description="Tag label for movies added to Radarr"
     )
 
     # Auto-Add Advanced Options
@@ -382,11 +382,11 @@ class Settings(BaseSettings):
     def validate_auto_tag_text(cls, v: Any) -> str:
         """Ensure auto tag text is a single word up to 20 characters."""
         if v is None:
-            return "boxarr"
+            return "bollyarr"
         s: str = str(v).strip()
         # Enforce non-empty, no whitespace, max 20 chars
         if not s:
-            return "boxarr"
+            return "bollyarr"
         if any(ch.isspace() for ch in s):
             raise ValueError("Auto tag must be a single word without spaces")
         if len(s) > 20:

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Boxarr Release Script
+# Bollyarr Release Script
 # Usage: ./scripts/release v0.3.0
 
 set -e  # Exit on error
@@ -101,5 +101,5 @@ echo "  - Push images to GitHub Container Registry"
 echo "  - Create a GitHub release with changelog"
 echo ""
 echo -e "${YELLOW}Monitor the release at:${NC}"
-echo "  https://github.com/iongpt/boxarr/actions"
-echo "  https://github.com/iongpt/boxarr/releases"
+echo "  https://github.com/kishlaymishra19/bollyarr/actions"
+echo "  https://github.com/kishlaymishra19/bollyarr/releases"

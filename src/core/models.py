@@ -1,4 +1,4 @@
-"""Core data models for Boxarr."""
+"""Core data models for Bollyarr."""
 
 from dataclasses import dataclass, field
 from datetime import datetime

@@ -1,4 +1,4 @@
-# Example configuration for Boxarr with root folder mappings
+# Example configuration for Bollyarr with root folder mappings
 # This shows how to configure automatic genre-based folder organization
 
 radarr:
@@ -83,7 +83,7 @@ boxarr:
       rating_whitelist: []
 
 # How it works:
-# 1. When adding a movie (manually or automatically), Boxarr checks its genres
+# 1. When adding a movie (manually or automatically), Bollyarr checks its genres
 # 2. It finds all matching mappings based on the movie's genres
 # 3. The mapping with the highest priority is selected
 # 4. The movie is added to the corresponding root folder
@@ -101,5 +101,5 @@ boxarr:
 # 1. Create the root folders in your file system
 # 2. Add all root folders to Radarr (Settings → Media Management)
 # 3. Configure the mappings in this file
-# 4. Enable the feature in Boxarr setup page
+# 4. Enable the feature in Bollyarr setup page
 #

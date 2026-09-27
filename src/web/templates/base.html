@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Boxarr - Box Office Tracking for Radarr{% endblock %}</title>
-    <link rel="icon" type="image/png" href="{{ request.scope.get('root_path', '') }}/static/boxar-logo.png">
+    <title>{% block title %}Bollyarr - Box Office Tracking for Radarr{% endblock %}</title>
+    <link rel="icon" type="image/png" href="{{ request.scope.get('root_path', '') }}/static/bollyarr-logo.png">
     <link rel="stylesheet" href="{{ request.scope.get('root_path', '') }}/static/css/style.css?v=3">
     <script>
         /* Theme initialization - prevent FOUC */
         (function() {
-            const stored = localStorage.getItem('boxarr-theme-preference');
+            const stored = localStorage.getItem('bollyarr-theme-preference')
+                || localStorage.getItem('boxarr-theme-preference');
             const serverTheme = document.documentElement.dataset.serverTheme || 'light';
             let theme;
             
@@ -206,12 +207,13 @@
 <body>
     <script>
         // Inject base path for JavaScript usage
-        window.BOXARR_BASE_PATH = "{{ request.scope.get('root_path', '') }}";
+        window.BOLLYARR_BASE_PATH = "{{ request.scope.get('root_path', '') }}";
+        window.BOXARR_BASE_PATH = window.BOLLYARR_BASE_PATH;
     </script>
     <nav class="navbar">
         <div class="navbar-container">
             <div class="navbar-brand">
-                <h1><img src="{{ request.scope.get('root_path', '') }}/static/boxar-logo.png" alt="Boxarr Logo" class="navbar-logo"> Boxarr</h1>
+                <h1><img src="{{ request.scope.get('root_path', '') }}/static/bollyarr-logo.png" alt="Bollyarr Logo" class="navbar-logo"> Bollyarr</h1>
                 <span class="version-badge">v{{ version|default('0.4.1-dev-dirty') }}</span>
                 <a href="#" id="updateNotification" class="update-notification" target="_blank">
                     <span class="update-icon">⬆️</span>
@@ -248,7 +250,7 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 Boxarr | <a href="https://github.com/iongpt/boxarr" target="_blank">GitHub</a></p>
+            <p>&copy; 2026 Bollyarr | <a href="https://github.com/kishlaymishra19/bollyarr" target="_blank">GitHub</a></p>
         </div>
     </footer>
 

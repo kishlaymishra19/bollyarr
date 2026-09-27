@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Box Office Week {{ week_data.year }}W{{ "%02d"|format(week_data.week) }} - Boxarr{% endblock %}
+{% block title %}Box Office Week {{ week_data.year }}W{{ "%02d"|format(week_data.week) }} - Bollyarr{% endblock %}
 
 {% block styles %}
 <style>
@@ -643,7 +643,7 @@
     
     <!-- Footer -->
     <div class="week-footer">
-        <p>Boxarr - Box Office Tracking for Radarr</p>
+        <p>Bollyarr - Box Office Tracking for Radarr</p>
         <p>Last updated: {{ week_data.generated_at.strftime('%B %d, %Y at %I:%M %p') if week_data.generated_at else 'Unknown' }}</p>
     </div>
 </div>

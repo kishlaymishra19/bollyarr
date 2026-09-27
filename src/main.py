@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Main entry point for Boxarr application."""
+"""Main entry point for Bollyarr application."""
 
 import asyncio
 import signal
@@ -16,14 +16,14 @@ setup_logging()
 from src.api.app import create_app_with_scheduler  # noqa: E402
 from src.core.boxoffice import BoxOfficeService  # noqa: E402
 from src.core.radarr import RadarrService  # noqa: E402
-from src.core.scheduler import BoxarrScheduler  # noqa: E402
+from src.core.scheduler import BollyarrScheduler  # noqa: E402
 from src.utils.config import settings  # noqa: E402
 from src.utils.logger import get_logger  # noqa: E402
 
 logger = get_logger(__name__)
 
 
-class BoxarrApplication:
+class BollyarrApplication:
     """Main application class."""
 
     def __init__(self):
@@ -34,12 +34,12 @@ class BoxarrApplication:
 
     async def startup(self):
         """Application startup."""
-        logger.info("Starting Boxarr application")
+        logger.info("Starting Bollyarr application")
 
         # Check if configured
         if not settings.is_configured:
             logger.info("No configuration found - starting in setup mode")
-            logger.info("Please visit http://localhost:8888 to configure Boxarr")
+            logger.info("Please visit http://localhost:8888 to configure Bollyarr")
             # Don't exit - allow API to start so user can configure via web UI
         else:
             # Test Radarr connection only if configured
@@ -61,15 +61,15 @@ class BoxarrApplication:
         if settings.is_configured and settings.boxarr_scheduler_enabled:
             logger.info("Scheduler will be started with the application")
 
-        logger.info("Boxarr startup complete")
+        logger.info("Bollyarr startup complete")
 
     async def shutdown(self):
         """Application shutdown."""
-        logger.info("Shutting down Boxarr")
+        logger.info("Shutting down Bollyarr")
 
         # Scheduler cleanup is handled by FastAPI shutdown event
         self._shutdown_event.set()
-        logger.info("Boxarr shutdown complete")
+        logger.info("Bollyarr shutdown complete")
 
     def handle_signal(self, sig):
         """Handle shutdown signals."""
@@ -104,7 +104,7 @@ class BoxarrApplication:
         logger.info("Running in CLI mode")
 
         # Initialize scheduler for CLI mode
-        self.scheduler = BoxarrScheduler(
+        self.scheduler = BollyarrScheduler(
             boxoffice_service=BoxOfficeService(),
             radarr_service=RadarrService() if settings.radarr_api_key else None,
         )
@@ -189,7 +189,7 @@ def cli():
     import argparse
 
     parser = argparse.ArgumentParser(
-        description="Boxarr - Box Office Tracking for Radarr"
+        description="Bollyarr - Box Office Tracking for Radarr"
     )
     parser.add_argument(
         "--mode",
@@ -220,7 +220,7 @@ def cli():
     mode = "cli" if args.mode == "update" else args.mode
 
     # Run application
-    app = BoxarrApplication()
+    app = BollyarrApplication()
 
     try:
         asyncio.run(app.main(mode))

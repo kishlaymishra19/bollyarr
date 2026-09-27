@@ -1,4 +1,4 @@
-"""Dynamic version management for Boxarr using git tags."""
+"""Dynamic version management for Bollyarr using git tags."""
 
 import subprocess
 from pathlib import Path

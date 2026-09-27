@@ -1,8 +1,9 @@
-"""Core business logic for Boxarr."""
+"""Core business logic for Bollyarr."""
 
 from .boxoffice import BoxOfficeMovie, BoxOfficeService
 from .exceptions import (
     BoxarrException,
+    BollyarrException,
     BoxOfficeError,
     ConfigurationError,
     MovieMatchingError,
@@ -14,13 +15,14 @@ from .exceptions import (
 )
 from .matcher import MatchResult, MovieMatcher
 from .radarr import MovieStatus, QualityProfile, RadarrMovie, RadarrService
-from .scheduler import BoxarrScheduler
+from .scheduler import BollyarrScheduler, BoxarrScheduler
 
 __all__ = [
     # Services
     "BoxOfficeService",
     "RadarrService",
     "MovieMatcher",
+    "BollyarrScheduler",
     "BoxarrScheduler",
     # Data classes
     "BoxOfficeMovie",
@@ -29,6 +31,7 @@ __all__ = [
     "MovieStatus",
     "MatchResult",
     # Exceptions
+    "BollyarrException",
     "BoxarrException",
     "ConfigurationError",
     "BoxOfficeError",

@@ -1,8 +1,8 @@
-# Boxarr - Developer Documentation
+# Bollyarr - Developer Documentation
 
 ## Architecture Overview
 
-Boxarr is a FastAPI-based web application that bridges box office data with Radarr movie management. It uses server-side rendering with Jinja2 templates and minimal JavaScript for dynamic updates.
+Bollyarr is a FastAPI-based web application that bridges box office data with Radarr movie management. It uses server-side rendering with Jinja2 templates and minimal JavaScript for dynamic updates.
 
 ### High-Level Architecture
 
@@ -149,7 +149,7 @@ make quality-check || {
 ## Repository Structure
 
 ```
-boxarr/
+bollyarr/
 ├── src/
 │   ├── core/               # Business logic
 │   │   ├── boxoffice.py   # Box Office Mojo scraper
@@ -276,7 +276,7 @@ Uses APScheduler with ThreadPoolExecutor:
 docker buildx create --use
 docker buildx build \
   --platform linux/amd64,linux/arm64 \
-  -t ghcr.io/iongpt/boxarr:latest \
+  -t ghcr.io/kishlaymishra19/bollyarr:latest \
   --push .
 ```
 
@@ -413,7 +413,7 @@ pytest -vvs tests/failing_test.py
 ```bash
 # Clear cache and rebuild
 docker system prune -a
-docker build --no-cache -t boxarr .
+docker build --no-cache -t bollyarr .
 ```
 
 ## Contributing Guidelines

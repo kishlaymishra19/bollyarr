@@ -1,4 +1,4 @@
-# Boxarr Default Configuration
+# Bollyarr Default Configuration
 # Copy this file to config.yaml and modify as needed
 
 version: 1
@@ -11,7 +11,7 @@ radarr:
   quality_profile_default: "HD-1080p"
   quality_profile_upgrade: "Ultra-HD"
 
-# Boxarr settings
+# Bollyarr settings
 boxarr:
   # Server configuration
   host: "0.0.0.0"

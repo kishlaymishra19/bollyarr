@@ -10,7 +10,7 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
 from ...core.library_sync import WEEKLY_WRITE_LOCK
-from ...core.scheduler import BoxarrScheduler
+from ...core.scheduler import BollyarrScheduler
 from ...utils.config import settings
 from ...utils.logger import get_logger
 
@@ -18,17 +18,17 @@ logger = get_logger(__name__)
 router = APIRouter(prefix="/api/scheduler", tags=["scheduler"])
 
 # Module-level scheduler instance
-_scheduler: Optional[BoxarrScheduler] = None
+_scheduler: Optional[BollyarrScheduler] = None
 
 
-def get_scheduler() -> BoxarrScheduler:
+def get_scheduler() -> BollyarrScheduler:
     """Get the scheduler instance."""
     global _scheduler
     if not _scheduler:
         from ...core.boxoffice import BoxOfficeService
         from ...core.radarr import RadarrService
 
-        _scheduler = BoxarrScheduler(
+        _scheduler = BollyarrScheduler(
             boxoffice_service=BoxOfficeService(),
             radarr_service=RadarrService() if settings.radarr_api_key else None,
         )

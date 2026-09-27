@@ -1,4 +1,4 @@
-"""API module for Boxarr."""
+"""API module for Bollyarr."""
 
 from .app import create_app
 

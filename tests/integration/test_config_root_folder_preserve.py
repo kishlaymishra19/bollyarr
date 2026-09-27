@@ -72,7 +72,7 @@ def test_save_should_preserve_existing_mappings_when_feature_not_in_use(
     when the user didn’t mean to change mappings. The server should preserve existing
     config by default. Current implementation overwrites it, so this test should FAIL.
     """
-    # Ensure Boxarr loads config from tmp_path
+    # Ensure Bollyarr loads config from tmp_path
     monkeypatch.setenv("BOXARR_DATA_DIRECTORY", str(tmp_path))
 
     # Seed existing configuration with mappings

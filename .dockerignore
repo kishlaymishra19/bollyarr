@@ -38,6 +38,7 @@ Thumbs.db
 # Local config (should be in volume)
 config/local.yaml
 config/boxarr.db
+config/bollyarr.db
 config/weekly_pages/
 
 # Docker

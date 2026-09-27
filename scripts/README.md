@@ -1,11 +1,11 @@
-# Boxarr Scripts
+# Bollyarr Scripts
 
 This directory contains utility scripts for development and CI/CD operations.
 
 ## Scripts
 
 ### `validate-ci.py`
-**Purpose**: Validates that your development environment is properly configured for Boxarr's CI/CD pipeline.
+**Purpose**: Validates that your development environment is properly configured for Bollyarr's CI/CD pipeline.
 
 **Usage**:
 ```bash
@@ -30,7 +30,7 @@ python scripts/validate-ci.py
 
 **Example output**:
 ```
-🚀 Boxarr CI/CD Validation
+🚀 Bollyarr CI/CD Validation
 ========================================
 ✅ Python 3.11.5 (supported)
 ✅ All required packages installed

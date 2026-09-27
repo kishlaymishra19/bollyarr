@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Diagnostic script to check Boxarr scheduler configuration and status."""
+"""Diagnostic script to check Bollyarr scheduler configuration and status."""
 
 import sys
 import os
@@ -10,7 +10,7 @@ from datetime import datetime, timedelta
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.utils.config import settings
-from src.core.scheduler import BoxarrScheduler
+from src.core.scheduler import BollyarrScheduler
 from apscheduler.triggers.cron import CronTrigger
 import pytz
 
@@ -96,7 +96,7 @@ def check_scheduler_instance():
         from src.core.radarr import RadarrService
         
         print("Creating scheduler instance...")
-        scheduler = BoxarrScheduler(
+        scheduler = BollyarrScheduler(
             boxoffice_service=BoxOfficeService(),
             radarr_service=RadarrService() if settings.radarr_api_key else None,
         )
@@ -197,7 +197,7 @@ def check_logs():
     print("RECENT SCHEDULER LOGS")
     print("="*60)
     
-    log_file = Path(settings.boxarr_data_directory) / "logs" / "boxarr.log"
+    log_file = Path(settings.boxarr_data_directory) / "logs" / "bollyarr.log"
     
     if not log_file.exists():
         print("⚠️  No log file found")
@@ -262,7 +262,7 @@ def suggest_fixes():
 def main():
     """Run all checks."""
     print("\n" + "="*60)
-    print("BOXARR SCHEDULER DIAGNOSTIC")
+    print("BOLLYARR SCHEDULER DIAGNOSTIC")
     print("="*60)
     print(f"Current time: {datetime.now()}")
     print(f"Config directory: {settings.boxarr_data_directory}")

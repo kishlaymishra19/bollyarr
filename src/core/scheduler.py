@@ -28,7 +28,7 @@ from .radarr import RadarrService, get_all_movies_with_optional_cache_bypass
 logger = get_logger(__name__)
 
 
-class BoxarrScheduler:
+class BollyarrScheduler:
     """Scheduler for automated box office tracking."""
 
     def __init__(
@@ -443,6 +443,7 @@ class BoxarrScheduler:
         """Handle job error event."""
         logger.error(f"Job {event.job_id} failed with error: {event.exception}")
 
+
     def reload_schedule(self, new_cron: str = None) -> bool:
         """
         Reload the scheduler with a new cron expression.
@@ -534,3 +535,7 @@ class BoxarrScheduler:
                 logger.error(f"Failed to read history file {file}: {e}")
 
         return results
+
+
+# Preserve imports from integrations using the original scheduler name.
+BoxarrScheduler = BollyarrScheduler

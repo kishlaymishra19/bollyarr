@@ -48,7 +48,7 @@ def _seed_config(dir_path: Path) -> Path:
 
 
 def test_setup_page_rehydrates_root_folder_mapping(tmp_path, monkeypatch):
-    # Point Boxarr to tmp config directory and seed config with enabled mapping
+    # Point Bollyarr to tmp config directory and seed config with enabled mapping
     monkeypatch.setenv("BOXARR_DATA_DIRECTORY", str(tmp_path))
     config_path = _seed_config(tmp_path)
 

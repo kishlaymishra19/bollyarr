@@ -1,22 +1,22 @@
-# Boxarr - Box Office Tracking for Radarr
+# Bollyarr - Box Office Tracking for Radarr
 
 <div align="center">
-  <img src="src/web/static/boxar-logo.png" alt="Boxarr Logo" width="200"/>
+  <img src="src/web/static/bollyarr-logo.png" alt="Bollyarr Logo" width="200"/>
   
   **Automatically track and add trending box office movies to your Radarr library**
   
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Docker](https://img.shields.io/badge/docker-ready-brightgreen.svg)](https://www.docker.com/)
-[![Wiki](https://img.shields.io/badge/wiki-documentation-blue)](https://github.com/iongpt/boxarr/wiki)
+[![Wiki](https://img.shields.io/badge/wiki-documentation-blue)](https://github.com/kishlaymishra19/bollyarr/wiki)
 </div>
 
 ---
 
 
-Boxarr monitors weekly box office charts and seamlessly integrates with Radarr to ensure your media library always has what people want to watch. No more manual searching for popular movies - Boxarr handles it automatically.
+Bollyarr monitors weekly box office charts and seamlessly integrates with Radarr to ensure your media library always has what people want to watch. No more manual searching for popular movies - Bollyarr handles it automatically.
 
-## 🎯 Why Boxarr?
+## 🎯 Why Bollyarr?
 
 - **Stay Current** - Never miss trending movies that everyone's talking about
 - **Save Time** - No more manually searching for and adding popular films  
@@ -25,16 +25,16 @@ Boxarr monitors weekly box office charts and seamlessly integrates with Radarr t
 
 ## 🤔 Why Not Seerr?
 
-Seerr is excellent for request-based libraries where users actively request content. Boxarr serves a different purpose:
+Seerr is excellent for request-based libraries where users actively request content. Bollyarr serves a different purpose:
 
-- **Automatic vs Request-Based**: Boxarr automatically adds mainstream hits without anyone having to request them
+- **Automatic vs Request-Based**: Bollyarr automatically adds mainstream hits without anyone having to request them
 - **Box Office Focus**: Tracks actual commercial success, not just user requests
 - **Zero User Interaction**: Works silently in the background, no user accounts or requests needed
-- **Complementary Tool**: Use both! Seerr for specific requests, Boxarr for mainstream coverage
+- **Complementary Tool**: Use both! Seerr for specific requests, Bollyarr for mainstream coverage
 
 ## 📋 Why Not Radarr Lists?
 
-While Radarr lists are useful, Boxarr offers unique advantages:
+While Radarr lists are useful, Bollyarr offers unique advantages:
 
 - **Box Office = Mainstream Appeal**: Tracks movies with proven commercial success, ensuring broad appeal
 - **Unbiased Selection**: Based on actual revenue data, not curator preferences or ratings
@@ -42,28 +42,28 @@ While Radarr lists are useful, Boxarr offers unique advantages:
 - **Duplicate Prevention**: Uses Radarr API to check existing movies before adding
 - **Historical Tracking**: Build a library of movies that were culturally significant at release
 
-Boxarr ensures your library includes the mainstream movies that dominated theaters - the films people are most likely to want to watch.
+Bollyarr ensures your library includes the mainstream movies that dominated theaters - the films people are most likely to want to watch.
 
 ## 📚 Documentation
 
-**[View the full documentation in our Wiki](https://github.com/iongpt/boxarr/wiki)** for detailed guides, configuration options, and troubleshooting.
+**[View the full documentation in our Wiki](https://github.com/kishlaymishra19/bollyarr/wiki)** for detailed guides, configuration options, and troubleshooting.
 
 ## ✨ Key Features
 
-- **📊 [Weekly Box Office Tracking](https://github.com/iongpt/boxarr/wiki/Box-Office-Tracking)** - Automatically fetches top 10 movies from Box Office Mojo
-- **🔄 [Radarr Integration](https://github.com/iongpt/boxarr/wiki/Configuration-Guide#radarr-connection)** - Seamlessly checks and adds movies to your library
-- **🗂️ [Genre‑Based Root Folders](https://github.com/iongpt/boxarr/wiki/Genre-Based-Root-Folders)** - Organize movies into folders by genre
-- **⚡ [Auto-Add Movies](https://github.com/iongpt/boxarr/wiki/Configuration-Guide#automation-settings)** - Automatically add trending movies with smart filters
-- **🔍 [Advanced Custom Filtering](https://github.com/iongpt/boxarr/wiki/Configuration-Guide#filter-settings)** - Fine-tune selections with genre, rating, and release year filters
-- **📅 [Scheduled Updates](https://github.com/iongpt/boxarr/wiki/Configuration-Guide#automation-settings)** - Runs weekly on your preferred schedule
-- **🎨 [Beautiful Web UI](https://github.com/iongpt/boxarr/wiki/Home#-visual-tour)** - Clean, responsive interface for all devices
-- **🚀 [Easy Setup](https://github.com/iongpt/boxarr/wiki/Initial-Setup)** - Simple web-based configuration wizard
+- **📊 [Weekly Box Office Tracking](https://github.com/kishlaymishra19/bollyarr/wiki/Box-Office-Tracking)** - Automatically fetches top 10 movies from Box Office Mojo
+- **🔄 [Radarr Integration](https://github.com/kishlaymishra19/bollyarr/wiki/Configuration-Guide#radarr-connection)** - Seamlessly checks and adds movies to your library
+- **🗂️ [Genre‑Based Root Folders](https://github.com/kishlaymishra19/bollyarr/wiki/Genre-Based-Root-Folders)** - Organize movies into folders by genre
+- **⚡ [Auto-Add Movies](https://github.com/kishlaymishra19/bollyarr/wiki/Configuration-Guide#automation-settings)** - Automatically add trending movies with smart filters
+- **🔍 [Advanced Custom Filtering](https://github.com/kishlaymishra19/bollyarr/wiki/Configuration-Guide#filter-settings)** - Fine-tune selections with genre, rating, and release year filters
+- **📅 [Scheduled Updates](https://github.com/kishlaymishra19/bollyarr/wiki/Configuration-Guide#automation-settings)** - Runs weekly on your preferred schedule
+- **🎨 [Beautiful Web UI](https://github.com/kishlaymishra19/bollyarr/wiki/Home#-visual-tour)** - Clean, responsive interface for all devices
+- **🚀 [Easy Setup](https://github.com/kishlaymishra19/bollyarr/wiki/Initial-Setup)** - Simple web-based configuration wizard
 
 ## 📋 Requirements
 
 - **Radarr** v3.0+ (required)
 - **Docker** (recommended) or Python 3.10+
-- Network access to Box Office Mojo
+- Network access to Box Office Mojo and TMDB
 
 ## 🚀 Quick Start
 
@@ -71,10 +71,10 @@ Boxarr ensures your library includes the mainstream movies that dominated theate
 
 ```bash
 docker run -d \
-  --name boxarr \
+  --name bollyarr \
   -p 8888:8888 \
   -v /path/to/config:/config \
-  ghcr.io/iongpt/boxarr:latest
+  ghcr.io/kishlaymishra19/bollyarr:latest
 ```
 
 Visit `http://localhost:8888` and follow the setup wizard.
@@ -85,9 +85,9 @@ Visit `http://localhost:8888` and follow the setup wizard.
 version: '3.8'
 
 services:
-  boxarr:
-    image: ghcr.io/iongpt/boxarr:latest
-    container_name: boxarr
+  bollyarr:
+    image: ghcr.io/kishlaymishra19/bollyarr:latest
+    container_name: bollyarr
     ports:
       - 8888:8888
     volumes:
@@ -97,7 +97,7 @@ services:
       - TZ=America/New_York  # Optional: Set your timezone
 ```
 
-**[View full installation guide →](https://github.com/iongpt/boxarr/wiki/Installation-Guide)**
+**[View full installation guide →](https://github.com/kishlaymishra19/bollyarr/wiki/Installation-Guide)**
 
 ## ⚙️ Initial Setup
 
@@ -106,32 +106,34 @@ services:
 3. Configure quality profiles and preferences
 4. Save and start tracking!
 
-**[View detailed setup guide →](https://github.com/iongpt/boxarr/wiki/Initial-Setup)**
+**[View detailed setup guide →](https://github.com/kishlaymishra19/bollyarr/wiki/Initial-Setup)**
 
 ## 📖 Configuration & Features
 
-- **[Box Office Tracking](https://github.com/iongpt/boxarr/wiki/Box-Office-Tracking)** - How weekly tracking works
-- **[Configuration Guide](https://github.com/iongpt/boxarr/wiki/Configuration-Guide)** - All settings explained
-- **[Auto-Add Movies](https://github.com/iongpt/boxarr/wiki/Configuration-Guide#auto-add-movies)** - Automatic movie additions with filters
-- **[Genre-Based Root Folders](https://github.com/iongpt/boxarr/wiki/Genre-Based-Root-Folders)** - Smart content organization
-- **[API Reference](https://github.com/iongpt/boxarr/wiki/API-Reference)** - REST API documentation
+- **[Box Office Tracking](https://github.com/kishlaymishra19/bollyarr/wiki/Box-Office-Tracking)** - How weekly tracking works
+- **[Configuration Guide](https://github.com/kishlaymishra19/bollyarr/wiki/Configuration-Guide)** - All settings explained
+- **[Auto-Add Movies](https://github.com/kishlaymishra19/bollyarr/wiki/Configuration-Guide#auto-add-movies)** - Automatic movie additions with filters
+- **[Genre-Based Root Folders](https://github.com/kishlaymishra19/bollyarr/wiki/Genre-Based-Root-Folders)** - Smart content organization
+- **[API Reference](https://github.com/kishlaymishra19/bollyarr/wiki/API-Reference)** - REST API documentation
 
 ## 🔧 Advanced Configuration
 
 ### Reverse Proxy Support
 
-Boxarr can run behind reverse proxies (nginx, Traefik, Caddy) with custom URL base support.
+Bollyarr can run behind reverse proxies (nginx, Traefik, Caddy) with custom URL base support.
 
 ```yaml
 environment:
-  - BOXARR_URL_BASE=boxarr  # Access at /boxarr/
+  - BOXARR_URL_BASE=bollyarr  # Access at /bollyarr/
 ```
 
-**[View reverse proxy setup guide →](https://github.com/iongpt/boxarr/wiki/Configuration-Guide#reverse-proxy-configuration)**
+The `BOXARR_*` environment variable names remain supported for existing deployments.
+
+**[View reverse proxy setup guide →](https://github.com/kishlaymishra19/bollyarr/wiki/Configuration-Guide#reverse-proxy-configuration)**
 
 ### Box Office Region & Timeout
 
-By default Boxarr tracks the US & Canada domestic chart. Set a Box Office Mojo `area` code to follow a different region, and tune the scraper timeout for slow connections.
+By default Bollyarr tracks the US & Canada domestic chart. Set a Box Office Mojo `area` code to follow a different region, and tune the scraper timeout for slow connections.
 
 ```yaml
 environment:
@@ -139,11 +141,14 @@ environment:
   - BOXOFFICE_TIMEOUT=120                 # Box Office Mojo request timeout in seconds (default 120, range 5-600)
 ```
 
+Select India (`IN`) to fetch Indian-origin releases from TMDB. Enter the TMDB API
+key on the setup page, or set `TMDB_API_KEY` in the environment to override it.
+
 ### API Access
 
-Boxarr provides a REST API for integration and automation.
+Bollyarr provides a REST API for integration and automation.
 
-- **[Full API Reference →](https://github.com/iongpt/boxarr/wiki/API-Reference)**
+- **[Full API Reference →](https://github.com/kishlaymishra19/bollyarr/wiki/API-Reference)**
 
 ## 📸 Screenshots
 
@@ -162,15 +167,15 @@ Boxarr provides a REST API for integration and automation.
 
 ## 🆘 Help & Support
 
-- **[Documentation Wiki](https://github.com/iongpt/boxarr/wiki)** - Full documentation
-- **[FAQ](https://github.com/iongpt/boxarr/wiki/FAQ)** - Frequently asked questions
-- **[Troubleshooting Guide](https://github.com/iongpt/boxarr/wiki/Troubleshooting)** - Common issues and solutions
-- **[GitHub Discussions](https://github.com/iongpt/boxarr/discussions)** - Community support
-- **[Report Issues](https://github.com/iongpt/boxarr/issues)** - Bug reports and feature requests
+- **[Documentation Wiki](https://github.com/kishlaymishra19/bollyarr/wiki)** - Full documentation
+- **[FAQ](https://github.com/kishlaymishra19/bollyarr/wiki/FAQ)** - Frequently asked questions
+- **[Troubleshooting Guide](https://github.com/kishlaymishra19/bollyarr/wiki/Troubleshooting)** - Common issues and solutions
+- **[GitHub Discussions](https://github.com/kishlaymishra19/bollyarr/discussions)** - Community support
+- **[Report Issues](https://github.com/kishlaymishra19/bollyarr/issues)** - Bug reports and feature requests
 
 ## Contributing
 
-We welcome contributions! Please see our [Contributing Guide](https://github.com/iongpt/boxarr/wiki/Contributing) for guidelines.
+We welcome contributions! Please see our [Contributing Guide](https://github.com/kishlaymishra19/bollyarr/wiki/Contributing) for guidelines.
 
 ## License
 

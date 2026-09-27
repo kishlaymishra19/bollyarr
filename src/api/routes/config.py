@@ -96,7 +96,7 @@ class SaveConfigRequest(BaseModel):
     )
     # Auto-tagging settings
     boxarr_features_auto_tag_enabled: bool = True
-    boxarr_features_auto_tag_text: str = "boxarr"
+    boxarr_features_auto_tag_text: str = "bollyarr"
     # UI theme setting
     boxarr_ui_theme: str = "light"
     # Hide ignored movies from list views; None carries over the current value
@@ -566,7 +566,7 @@ async def check_for_update():
         # Fetch latest release from GitHub
         async with httpx.AsyncClient() as client:
             response = await client.get(
-                "https://api.github.com/repos/iongpt/boxarr/releases/latest",
+                "https://api.github.com/repos/kishlaymishra19/bollyarr/releases/latest",
                 headers={"Accept": "application/vnd.github.v3+json"},
                 timeout=5.0,
             )
@@ -598,7 +598,7 @@ async def check_for_update():
             # Always link to releases page if update available
             changelog_url = None
             if update_available:
-                changelog_url = "https://github.com/iongpt/boxarr/releases"
+                changelog_url = "https://github.com/kishlaymishra19/bollyarr/releases"
 
             return {
                 "update_available": update_available,

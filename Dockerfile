@@ -1,4 +1,4 @@
-# Boxarr Docker Image - Simple working version
+# Bollyarr Docker Image - Simple working version
 
 FROM python:3.11-slim
 
@@ -22,6 +22,7 @@ COPY config/default.yaml /app/config/
 RUN mkdir -p /config
 
 # Environment variables (optional - can be configured via UI)
+# Keep the Boxarr variable name for existing deployments.
 ENV PYTHONUNBUFFERED=1 \
     PYTHONPATH=/app \
     BOXARR_DATA_DIRECTORY=/config

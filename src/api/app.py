@@ -1,4 +1,4 @@
-"""Boxarr API application."""
+"""Bollyarr API application."""
 
 import math
 from typing import Optional, Union
@@ -13,7 +13,7 @@ from uvicorn.middleware.proxy_headers import ProxyHeadersMiddleware
 
 from .. import __version__
 from ..core.radarr import RadarrService
-from ..core.scheduler import BoxarrScheduler
+from ..core.scheduler import BollyarrScheduler
 from ..utils.config import settings
 from ..utils.logger import get_logger
 from .routes import (
@@ -33,7 +33,7 @@ def _json_safe_float(value: float) -> Union[float, str]:
     return value if math.isfinite(value) else repr(value)
 
 
-def create_app(scheduler: Optional[BoxarrScheduler] = None) -> FastAPI:
+def create_app(scheduler: Optional[BollyarrScheduler] = None) -> FastAPI:
     """
     Create and configure the FastAPI application.
 
@@ -48,7 +48,7 @@ def create_app(scheduler: Optional[BoxarrScheduler] = None) -> FastAPI:
     root_path = f"/{base}" if base else ""
 
     app = FastAPI(
-        title="Boxarr",
+        title="Bollyarr",
         description="Box Office Tracking for Radarr - A local media management tool",
         version=__version__,
         root_path=root_path,
@@ -113,7 +113,7 @@ def create_app(scheduler: Optional[BoxarrScheduler] = None) -> FastAPI:
     @app.on_event("startup")
     async def startup_event():
         """Initialize application on startup."""
-        logger.info("Boxarr API starting up...")
+        logger.info("Bollyarr API starting up...")
 
         # Start scheduler if configured and enabled
         if scheduler and settings.boxarr_scheduler_enabled:
@@ -123,7 +123,7 @@ def create_app(scheduler: Optional[BoxarrScheduler] = None) -> FastAPI:
     @app.on_event("shutdown")
     async def shutdown_event():
         """Cleanup on application shutdown."""
-        logger.info("Boxarr API shutting down...")
+        logger.info("Bollyarr API shutting down...")
 
         # Stop scheduler if running
         if scheduler:
@@ -158,7 +158,7 @@ def create_app_with_scheduler() -> FastAPI:
     from ..core.radarr import RadarrService
 
     # Initialize scheduler with services
-    scheduler = BoxarrScheduler(
+    scheduler = BollyarrScheduler(
         boxoffice_service=BoxOfficeService(),
         radarr_service=RadarrService() if settings.radarr_api_key else None,
     )

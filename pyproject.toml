@@ -3,13 +3,13 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "boxarr"
+name = "bollyarr"
 version = "2.1.0"
-description = "Box Office Tracking for Radarr"
+description = "Indian Movie Release Tracking for Radarr"
 readme = "README.md"
 license = {text = "GPL-3.0"}
 authors = [
-    {name = "Boxarr Project", email = "hello@boxarr.io"},
+    {name = "Bollyarr Project"},
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -55,12 +55,14 @@ docs = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/iongpt/boxarr"
-Repository = "https://github.com/iongpt/boxarr"
-Issues = "https://github.com/iongpt/boxarr/issues"
-Documentation = "https://github.com/iongpt/boxarr/blob/main/README.md"
+Homepage = "https://github.com/kishlaymishra19/bollyarr"
+Repository = "https://github.com/kishlaymishra19/bollyarr"
+Issues = "https://github.com/kishlaymishra19/bollyarr/issues"
+Documentation = "https://github.com/kishlaymishra19/bollyarr/blob/main/README.md"
 
 [project.scripts]
+bollyarr = "src.main:cli"
+# Legacy command alias for existing installs.
 boxarr = "src.main:cli"
 
 # Black configuration

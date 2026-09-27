@@ -1,6 +1,6 @@
 ---
 name: Bug Report
-about: Create a report to help us improve Boxarr
+about: Create a report to help us improve Bollyarr
 title: "[BUG] "
 labels: bug
 assignees: ''
@@ -27,7 +27,7 @@ If applicable, add screenshots to help explain your problem.
 ## Environment
 - OS: [e.g. Ubuntu 22.04, Windows 11, macOS 13]
 - Docker Version: [e.g. 24.0.6]
-- Boxarr Version: [e.g. v0.2.0]
+- Bollyarr Version: [e.g. v0.2.0]
 - Radarr Version: [e.g. 4.7.5]
 - Browser (if web UI issue): [e.g. Chrome 118, Firefox 119]
 

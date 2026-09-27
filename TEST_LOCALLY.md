@@ -1,4 +1,4 @@
-# Testing Boxarr Locally
+# Testing Bollyarr Locally
 
 ## Quick Start (No Docker)
 
@@ -6,7 +6,7 @@
 # 1. Install dependencies
 pip install -r requirements.txt
 
-# 2. Run Boxarr
+# 2. Run Bollyarr
 python src/main.py
 
 # 3. Open browser
@@ -17,20 +17,20 @@ open http://localhost:8888
 
 ```bash
 # 1. Build the image
-docker build -t boxarr:test .
+docker build -t bollyarr:test .
 
 # 2. Run container (NO environment variables needed!)
 docker run -d \
-  --name boxarr \
+   --name bollyarr \
   -p 8888:8888 \
   -v $(pwd)/config:/config \
-  boxarr:test
+   bollyarr:test
 
 # 3. Open browser
 open http://localhost:8888
 
 # 4. View logs
-docker logs -f boxarr
+docker logs -f bollyarr
 ```
 
 ## First-Time Setup Flow
@@ -89,12 +89,12 @@ open config/weekly_pages/current.html
 
 ### No movies showing?
 - Click "Update Now" to fetch current box office
-- Check logs: `docker logs boxarr`
+- Check logs: `docker logs bollyarr`
 
 ### Reset configuration?
 ```bash
 rm config/local.yaml
-docker restart boxarr
+docker restart bollyarr
 ```
 
 ## Environment Variables (Optional)
@@ -103,12 +103,12 @@ You can still use environment variables if preferred:
 
 ```bash
 docker run -d \
-  --name boxarr \
+   --name bollyarr \
   -e RADARR_URL=http://radarr:7878 \
   -e RADARR_API_KEY=your_key \
   -p 8888:8888 \
   -v $(pwd)/config:/config \
-  boxarr:test
+   bollyarr:test
 ```
 
 But the UI configuration method is recommended!

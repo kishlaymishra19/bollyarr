@@ -1,9 +1,10 @@
 /**
- * ThemeManager - Manages theme switching and persistence for Boxarr
+ * ThemeManager - Manages theme switching and persistence for Bollyarr
  */
 class ThemeManager {
     constructor() {
-        this.STORAGE_KEY = 'boxarr-theme-preference';
+        this.STORAGE_KEY = 'bollyarr-theme-preference';
+        this.LEGACY_STORAGE_KEY = 'boxarr-theme-preference';
         this.mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
         this.currentTheme = null;
         this.init();
@@ -31,7 +32,11 @@ class ThemeManager {
      */
     getEffectiveTheme() {
         // 1. Check localStorage for user override
-        const stored = localStorage.getItem(this.STORAGE_KEY);
+        const stored = localStorage.getItem(this.STORAGE_KEY)
+            || localStorage.getItem(this.LEGACY_STORAGE_KEY);
+        if (stored && !localStorage.getItem(this.STORAGE_KEY)) {
+            localStorage.setItem(this.STORAGE_KEY, stored);
+        }
         
         // 2. If user selected a specific theme (light/dark), use it
         if (stored === 'light' || stored === 'dark') {

@@ -1,1 +1,1 @@
-"""Integration tests for Boxarr."""
+"""Integration tests for Bollyarr."""

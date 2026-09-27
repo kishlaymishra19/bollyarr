@@ -514,7 +514,7 @@ def _min_gross_input_value(value: float) -> str:
     threshold without telling anyone, and on a non-finite value it raises
     OverflowError - which ``do_int`` does not catch, so a single out-of-range
     number in local.yaml would 500 the only page able to fix it. Saves round
-    the threshold to whole dollars, so a value written by Boxarr renders
+    the threshold to whole dollars, so a value written by Bollyarr renders
     exactly; the guards below only cover hand-edited or legacy configs.
     """
     try:
@@ -884,7 +884,7 @@ async def get_widget(request: Request):
             f"<li>{html.escape(str(m['title']))}</li>" for m in widget_data.movies[:5]
         )
         widget_html = f"""
-        <div class="boxarr-widget">
+        <div class="bollyarr-widget">
             <h3>Box Office Week {widget_data.current_week}, {widget_data.current_year}</h3>
             <ol>
                 {list_items}

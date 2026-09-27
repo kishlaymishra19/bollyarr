@@ -1,25 +1,29 @@
-"""Custom exceptions for Boxarr."""
+"""Custom exceptions for Bollyarr."""
 
 
-class BoxarrException(Exception):
-    """Base exception for all Boxarr errors."""
+class BollyarrException(Exception):
+    """Base exception for all Bollyarr errors."""
 
     pass
 
 
-class ConfigurationError(BoxarrException):
+# Preserve imports from integrations using the original exception name.
+BoxarrException = BollyarrException
+
+
+class ConfigurationError(BollyarrException):
     """Raised when configuration is invalid or missing."""
 
     pass
 
 
-class BoxOfficeError(BoxarrException):
+class BoxOfficeError(BollyarrException):
     """Raised when box office data cannot be fetched."""
 
     pass
 
 
-class RadarrError(BoxarrException):
+class RadarrError(BollyarrException):
     """Base exception for Radarr-related errors."""
 
     pass
@@ -43,13 +47,13 @@ class RadarrNotFoundError(RadarrError):
     pass
 
 
-class MovieMatchingError(BoxarrException):
+class MovieMatchingError(BollyarrException):
     """Raised when movie matching fails."""
 
     pass
 
 
-class SchedulerError(BoxarrException):
+class SchedulerError(BollyarrException):
     """Raised when scheduler operations fail."""
 
     pass

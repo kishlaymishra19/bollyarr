@@ -19,7 +19,7 @@ class TMDBIndianReleaseService:
 
     TMDB popularity is used for ordering because reliable weekly gross data is
     not available here. The existing BoxOfficeMovie shape keeps this source
-    compatible with Boxarr's matcher and scheduler.
+    compatible with Bollyarr's matcher and scheduler.
     """
 
     BASE_URL = "https://api.themoviedb.org/3"

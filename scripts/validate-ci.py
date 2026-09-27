@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Validation script for Boxarr CI/CD setup.
+Validation script for Bollyarr CI/CD setup.
 Run this script to check if your development environment is properly configured.
 """
 
@@ -156,14 +156,14 @@ def check_docker() -> bool:
     
     # Try to build the Docker image (but don't push)
     print("🔍 Testing Docker build...")
-    code, stdout, stderr = run_command("docker build -t boxarr:test .")
+    code, stdout, stderr = run_command("docker build -t bollyarr:test .")
     
     if code == 0:
         print("✅ Docker build successful")
         
         # Test if the container starts
         print("🔍 Testing container startup...")
-        code, stdout, stderr = run_command("docker run --rm -d --name boxarr-validation-test -p 8889:8888 boxarr:test")
+        code, stdout, stderr = run_command("docker run --rm -d --name bollyarr-validation-test -p 8889:8888 bollyarr:test")
         
         if code == 0:
             # Wait a moment and check if container is healthy
@@ -173,7 +173,7 @@ def check_docker() -> bool:
             health_code, health_stdout, health_stderr = run_command("curl -f http://localhost:8889/api/health")
             
             # Clean up container
-            subprocess.run(["docker", "stop", "boxarr-validation-test"], capture_output=True)
+            subprocess.run(["docker", "stop", "bollyarr-validation-test"], capture_output=True)
             
             if health_code == 0:
                 print("✅ Container starts and responds to health checks")
@@ -222,7 +222,7 @@ def check_git_setup() -> bool:
 
 def main():
     """Run all validation checks."""
-    print("🚀 Boxarr CI/CD Validation")
+    print("🚀 Bollyarr CI/CD Validation")
     print("=" * 40)
     
     checks = [

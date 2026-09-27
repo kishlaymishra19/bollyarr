@@ -2,7 +2,7 @@
 
 This verifies current behavior before introducing the optional
 "Ignore re-releases" setting: when auto-add is enabled and no
-filters are active, Boxarr will attempt to add any unmatched
+filters are active, Bollyarr will attempt to add any unmatched
 movie from the weekly box office list regardless of its
 original release year.
 

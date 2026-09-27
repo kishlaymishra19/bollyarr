@@ -1,4 +1,4 @@
-"""Logging configuration for Boxarr."""
+"""Logging configuration for Bollyarr."""
 
 import logging
 import os
@@ -77,7 +77,7 @@ def setup_logging(
 
     # File handler with rotation
     file_handler = RotatingFileHandler(
-        log_dir / "boxarr.log", maxBytes=10 * 1024 * 1024, backupCount=5  # 10MB
+        log_dir / "bollyarr.log", maxBytes=10 * 1024 * 1024, backupCount=5  # 10MB
     )
     file_handler.setFormatter(formatter)
     file_handler.setLevel(logging.DEBUG)  # Always log DEBUG to file
@@ -118,4 +118,4 @@ def get_logger(name: Optional[str] = None) -> logging.Logger:
     """
     # Don't setup logging here - it should be done explicitly in main.py
     # This removes the import-time side effect
-    return logging.getLogger(name or "boxarr")
+    return logging.getLogger(name or "bollyarr")

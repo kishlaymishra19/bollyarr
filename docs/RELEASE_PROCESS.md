@@ -1,6 +1,6 @@
 # Release Process
 
-This document describes the release process for Boxarr.
+This document describes the release process for Bollyarr.
 
 ## Changelog Management
 

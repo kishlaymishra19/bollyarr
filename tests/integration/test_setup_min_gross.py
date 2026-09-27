@@ -267,7 +267,7 @@ def test_dashboard_keeps_the_cents_of_a_hand_edited_threshold(tmp_path, monkeypa
 
     Saves round to whole dollars, so only a hand-edited config gets here - but
     rounding the cents away on the chip while the log prints them makes the two
-    contradict each other about one number, which reads as a bug in Boxarr.
+    contradict each other about one number, which reads as a bug in Bollyarr.
     """
     html = _dashboard_page(
         tmp_path, monkeypatch, min_gross_enabled=True, min_gross=1200000.4

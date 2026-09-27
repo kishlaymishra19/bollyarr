@@ -1,10 +1,10 @@
 /**
- * Boxarr Frontend Application
+ * Bollyarr Frontend Application
  * Unified JavaScript for all pages
  */
 
 // Get base path from injected variable (set in base.html)
-const BASE_PATH = window.BOXARR_BASE_PATH || '';
+const BASE_PATH = window.BOLLYARR_BASE_PATH || window.BOXARR_BASE_PATH || '';
 
 // URL helper functions
 function makeUrl(path) {
@@ -745,7 +745,7 @@ function reloadScheduler() {
             .catch(error => {
                 if (progressMessage) progressMessage.textContent = '❌ Network error';
                 addLogEntry(`Network error: ${error.message}`, 'error');
-                addLogEntry('Please check if the Boxarr server is running', 'error');
+                addLogEntry('Please check if the Bollyarr server is running', 'error');
                 if (progressFooter) progressFooter.style.display = 'block';
             });
     };
@@ -868,7 +868,7 @@ function reloadScheduler() {
         .catch(error => {
             if (progressMessage) progressMessage.textContent = '❌ Network error';
             addLogEntry(`Network error: ${error.message}`, 'error');
-            addLogEntry('Please check if the Boxarr server is running', 'error');
+            addLogEntry('Please check if the Bollyarr server is running', 'error');
             if (progressFooter) progressFooter.style.display = 'block';
         });
     };
@@ -967,7 +967,7 @@ function reloadScheduler() {
         .catch(error => {
             if (progressMessage) progressMessage.textContent = '❌ Network error';
             addLogEntry(`Network error: ${error.message}`, 'error');
-            addLogEntry('Please check if the Boxarr server is running', 'error');
+            addLogEntry('Please check if the Bollyarr server is running', 'error');
             if (progressFooter) progressFooter.style.display = 'block';
         });
     };
@@ -1360,7 +1360,7 @@ function reloadScheduler() {
                 
                 let errorMsg = 'Network error';
                 if (error.message.includes('fetch')) {
-                    errorMsg = 'Could not reach Boxarr server';
+                    errorMsg = 'Could not reach Bollyarr server';
                 }
                 showMessage('❌ ' + errorMsg + ': ' + error.message, 'error');
             });
@@ -1574,7 +1574,7 @@ function reloadScheduler() {
         // Auto-tag settings
         config.boxarr_features_auto_tag_enabled = document.getElementById('autoTagEnabled')?.checked || false;
         const autoTagInput = document.getElementById('autoTagText');
-        config.boxarr_features_auto_tag_text = (autoTagInput && autoTagInput.value) ? autoTagInput.value : 'boxarr';
+        config.boxarr_features_auto_tag_text = (autoTagInput && autoTagInput.value) ? autoTagInput.value : 'bollyarr';
         // UI settings. Must be posted even when unchecked: the server carries an
         // omitted value over, so a missing false could never turn hiding back off.
         config.boxarr_ui_hide_ignored = document.getElementById('hideIgnored')?.checked || false;
@@ -1922,9 +1922,9 @@ function reloadScheduler() {
         }
         
         // Add CSS animations if not present
-        if (!document.getElementById('boxarrAnimations')) {
+        if (!document.getElementById('bollyarrAnimations')) {
             const style = document.createElement('style');
-            style.id = 'boxarrAnimations';
+            style.id = 'bollyarrAnimations';
             style.textContent = `
                 @keyframes slideIn {
                     from { transform: translateX(100%); opacity: 0; }

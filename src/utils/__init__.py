@@ -1,4 +1,4 @@
-"""Utility modules for Boxarr."""
+"""Utility modules for Bollyarr."""
 
 from .config import Settings, settings
 from .logger import get_logger

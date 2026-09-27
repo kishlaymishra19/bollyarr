@@ -1,4 +1,4 @@
-"""API route modules for Boxarr."""
+"""API route modules for Bollyarr."""
 
 from .admin import router as admin_router
 from .boxoffice import router as boxoffice_router
