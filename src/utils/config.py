@@ -132,6 +132,9 @@ class Settings(BaseSettings):
         default=HttpUrl("http://localhost:7878"), description="URL to Radarr instance"
     )
     radarr_api_key: str = Field(default="", description="Radarr API key")
+    tmdb_api_key: str = Field(
+        default="", description="TMDB API key for India-region movie discovery"
+    )
     radarr_root_folder: Path = Field(
         default=Path("/movies"), description="Root folder for movies in Radarr"
     )
@@ -233,20 +236,20 @@ class Settings(BaseSettings):
         default=10,
         ge=1,
         le=30,
-        description="Number of movies to fetch from Box Office Mojo (1-30)",
+        description="Number of movies to fetch each week (1-30)",
     )
     boxarr_features_box_office_region: str = Field(
         default="",
         description=(
-            "Box Office Mojo region 'area' code (e.g. 'NL', 'DE'). "
-            "Empty means US & Canada domestic (no ?area parameter)."
+            "Region code. 'IN' uses TMDB Indian-origin releases; other codes use "
+            "Box Office Mojo. Empty means US & Canada domestic."
         ),
     )
     boxoffice_timeout: float = Field(
         default=120.0,
         ge=5,
         le=600,
-        description="HTTP timeout in seconds for Box Office Mojo requests",
+        description="HTTP timeout in seconds for Box Office Mojo and TMDB requests",
     )
     boxarr_features_auto_add: bool = Field(
         default=False, description="Automatically add movies to Radarr"
@@ -656,6 +659,8 @@ class Settings(BaseSettings):
             # Mask sensitive data
             if "radarr_api_key" in data:
                 data["radarr_api_key"] = "***" if data["radarr_api_key"] else ""
+            if "tmdb_api_key" in data:
+                data["tmdb_api_key"] = "***" if data["tmdb_api_key"] else ""
         return data
 
     @classmethod

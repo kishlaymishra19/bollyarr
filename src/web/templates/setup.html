@@ -202,18 +202,38 @@
                         <option value="{{ i }}" {% if box_office_limit == i %}selected{% endif %}>{{ i }} movies</option>
                         {% endfor %}
                     </select>
-                    <small class="text-muted">Number of movies to fetch from Box Office Mojo each week (1-30)</small>
+                    <small class="text-muted">Number of movies to fetch each week (1-30)</small>
                 </div>
 
                 <!-- Box Office Region -->
                 <div class="form-group" style="margin-top: 1rem;">
                     <label for="boxOfficeRegion" class="form-label">Box Office Region</label>
-                    <select id="boxOfficeRegion" name="boxarr_features_box_office_region" class="form-select">
+                    <select id="boxOfficeRegion" name="boxarr_features_box_office_region" class="form-select" onchange="toggleTmdbApiKey()">
                         {% for code, name in box_office_regions %}
                         <option value="{{ code }}" {% if box_office_region == code %}selected{% endif %}>{{ name }}</option>
                         {% endfor %}
                     </select>
-                    <small class="text-muted">Which Box Office Mojo weekend chart to fetch (grosses are reported in US dollars for every region)</small>
+                    <small class="text-muted">India uses TMDB for Indian-origin releases, ranked by popularity. Other regions use Box Office Mojo.</small>
+                </div>
+
+                <div id="tmdbApiKeyGroup" class="form-group" style="margin-top: 0.75rem;"
+                     data-key-configured="{{ tmdb_api_key_configured|tojson }}"
+                     data-key-from-env="{{ tmdb_api_key_from_env|tojson }}"
+                     {% if box_office_region|upper != 'IN' %}hidden{% endif %}>
+                    <label for="tmdbApiKey" class="form-label">TMDB API Key</label>
+                    <input type="password" id="tmdbApiKey" name="tmdb_api_key" class="form-input"
+                           autocomplete="new-password" placeholder="Enter your TMDB API key"
+                           {% if box_office_region|upper != 'IN' or tmdb_api_key_from_env %}disabled{% endif %}
+                           {% if box_office_region|upper == 'IN' and not tmdb_api_key_configured %}required{% endif %}>
+                    <small id="tmdbApiKeyHelp" class="text-muted">
+                        {% if tmdb_api_key_from_env %}
+                            TMDB_API_KEY is configured in the environment. This field is disabled.
+                        {% elif tmdb_api_key_configured %}
+                            A key is already saved. Leave blank to keep it, or enter a replacement.
+                        {% else %}
+                            Required for India. The key is saved in your local Boxarr configuration.
+                        {% endif %}
+                    </small>
                 </div>
 
                 <!-- Auto-Add Advanced Options -->

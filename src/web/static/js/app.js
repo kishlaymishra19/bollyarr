@@ -1703,6 +1703,20 @@ function reloadScheduler() {
         });
     };
 
+    window.toggleTmdbApiKey = function() {
+        const region = document.getElementById('boxOfficeRegion');
+        const group = document.getElementById('tmdbApiKeyGroup');
+        const input = document.getElementById('tmdbApiKey');
+        if (!region || !group || !input) return;
+
+        const isIndia = region.value.trim().toUpperCase() === 'IN';
+        const keyConfigured = group.dataset.keyConfigured === 'true';
+        const keyFromEnv = group.dataset.keyFromEnv === 'true';
+        group.hidden = !isIndia;
+        input.disabled = !isIndia || keyFromEnv;
+        input.required = isIndia && !keyConfigured;
+    };
+
     window.toggleScheduler = function() {
         const checkbox = document.getElementById('schedulerEnabled');
         const controls = document.querySelector('.scheduler-controls');
@@ -1790,6 +1804,7 @@ function reloadScheduler() {
         
         // Setup page specific initialization
         if (isCurrentPath('/setup')) {
+            window.toggleTmdbApiKey();
             // Rehydrate root-folder mapping UI from server state
             loadAvailableRootFolders();
             fetch(apiUrl('/config/root-folders'))

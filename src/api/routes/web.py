@@ -625,6 +625,11 @@ async def setup_page(request: Request):
             # Box office region
             box_office_region=box_office_region,
             box_office_regions=BOX_OFFICE_REGIONS,
+            tmdb_api_key_configured=bool(settings.tmdb_api_key),
+            tmdb_api_key_from_env=bool(
+                settings.tmdb_api_key
+                and "tmdb_api_key" in settings._get_env_set_fields()
+            ),
             box_office_region_name=dict(BOX_OFFICE_REGIONS).get(
                 box_office_region, box_office_region
             ),

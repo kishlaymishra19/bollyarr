@@ -15,9 +15,9 @@ from .exceptions import BoxOfficeError
 
 logger = get_logger(__name__)
 
-# Box Office Mojo international "area" codes mapped to display names.
-# The empty code selects the default US & Canada domestic chart, which is
-# fetched without an ?area parameter. All other codes append ?area=CODE.
+# International region codes mapped to display names. India is routed through
+# TMDB; other non-empty codes select Box Office Mojo's ?area=CODE chart.
+# The empty code selects the default US & Canada domestic chart.
 BOX_OFFICE_REGIONS: List[Tuple[str, str]] = [
     ("", "Domestic (US & Canada)"),
     ("AL", "Albania"),
@@ -396,6 +396,22 @@ class BoxOfficeService:
         # Calculate weekend if not specified
         if year is None or week is None:
             _, _, year, week = self.get_weekend_dates()
+
+        region = (
+            getattr(settings, "boxarr_features_box_office_region", "") or ""
+        ).strip()
+        if region.upper() == "IN":
+            from .tmdb import TMDBIndianReleaseService
+
+            try:
+                friday = datetime.fromisocalendar(year, week, 5)
+            except ValueError as e:
+                raise BoxOfficeError(f"Invalid ISO week: {year}-W{week:02d}") from e
+
+            return TMDBIndianReleaseService(
+                api_key=getattr(settings, "tmdb_api_key", ""),
+                http_client=self.client,
+            ).fetch_weekend_releases(friday, friday + timedelta(days=2), limit=limit)
 
         url = self._build_weekend_url(year, week)
         logger.info(f"Fetching box office data from: {url}")

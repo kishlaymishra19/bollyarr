@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 import httpx
+import yaml
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 
@@ -64,8 +65,9 @@ class SaveConfigRequest(BaseModel):
     boxarr_features_quality_upgrade: bool = True
     # Box office fetch limit
     boxarr_features_box_office_limit: int = 10
-    # Box office region (BOM area code; "" means US & Canada domestic)
+    # "IN" uses TMDB Indian-origin releases; other values select a BOM region.
     boxarr_features_box_office_region: str = ""
+    tmdb_api_key: Optional[str] = None
     # HTTP request timeouts (seconds); None carries over the current value on save
     boxoffice_timeout: Optional[float] = Field(default=None, ge=5, le=600)
     radarr_timeout: Optional[float] = Field(default=None, ge=5, le=600)
@@ -248,6 +250,41 @@ async def save_configuration(config: SaveConfigRequest):
         if config_path.exists():
             current_file_settings.load_from_yaml(config_path)
 
+        tmdb_api_key_from_env = bool(
+            settings.tmdb_api_key
+            and "tmdb_api_key" in settings._get_env_set_fields()
+        )
+        stored_tmdb_api_key = current_file_settings.tmdb_api_key or ""
+        if tmdb_api_key_from_env:
+            stored_tmdb_api_key = ""
+            if config_path.exists():
+                try:
+                    with config_path.open() as config_file:
+                        existing_config = yaml.safe_load(config_file) or {}
+                    if isinstance(existing_config, dict):
+                        stored_tmdb_api_key = str(
+                            existing_config.get("tmdb_api_key", "") or ""
+                        ).strip()
+                except (OSError, yaml.YAMLError):
+                    stored_tmdb_api_key = ""
+
+        submitted_tmdb_api_key = (config.tmdb_api_key or "").strip()
+        effective_tmdb_api_key = (
+            settings.tmdb_api_key
+            if tmdb_api_key_from_env
+            else submitted_tmdb_api_key or stored_tmdb_api_key
+        )
+        if (
+            config.boxarr_features_box_office_region.strip().upper() == "IN"
+            and not effective_tmdb_api_key
+        ):
+            return {
+                "success": False,
+                "message": (
+                    "TMDB API key is required when the Box Office Region is India."
+                ),
+            }
+
         # Validate cron expression first
         if config.boxarr_scheduler_enabled:
             try:
@@ -425,11 +462,17 @@ async def save_configuration(config: SaveConfigRequest):
             ),
         }
 
+        tmdb_key_to_save = (
+            stored_tmdb_api_key
+            if tmdb_api_key_from_env
+            else submitted_tmdb_api_key or stored_tmdb_api_key
+        )
+        if tmdb_key_to_save:
+            config_data["tmdb_api_key"] = tmdb_key_to_save
+
         # Save to local.yaml atomically (temp file + os.replace) so an
         # interrupted write cannot truncate local.yaml and brick startup.
         import tempfile
-
-        import yaml
 
         config_path.parent.mkdir(parents=True, exist_ok=True)
         tmp_fd, tmp_path = tempfile.mkstemp(dir=config_path.parent, suffix=".tmp")

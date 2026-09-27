@@ -27,8 +27,8 @@ boxarr:
     auto_add: true
     quality_upgrade: true
     notifications: false
-    # Box Office Mojo region 'area' code (e.g. "NL", "DE", "GB").
-    # Empty means US & Canada domestic (no ?area parameter).
+    # Region code: "IN" uses TMDB Indian-origin releases; other codes use
+    # Box Office Mojo. Empty means US & Canada domestic.
     box_office_region: ""
   
   # UI configuration
@@ -48,7 +48,7 @@ boxarr:
     directory: "/config"
     history_retention_days: 90
 
-# Box Office Mojo HTTP request timeout in seconds (default 120, range 5-600)
+# Box Office Mojo and TMDB HTTP request timeout in seconds (default 120, range 5-600)
 boxoffice_timeout: 120
 
 # Logging
