@@ -1,9 +1,9 @@
-# Bollyarr - Box Office Tracking for Radarr
+# Bollyarr - Indian Movie Releases for Radarr
 
 <div align="center">
   <img src="src/web/static/bollyarr-logo.png" alt="Bollyarr Logo" width="200"/>
   
-  **Automatically track and add trending box office movies to your Radarr library**
+  **Discover Indian movie releases each week and send them to Radarr**
   
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
@@ -14,56 +14,35 @@
 ---
 
 
-Bollyarr monitors weekly box office charts and seamlessly integrates with Radarr to ensure your media library always has what people want to watch. No more manual searching for popular movies - Bollyarr handles it automatically.
+Bollyarr discovers Indian-produced movies with releases in India during the selected week, then matches them against your Radarr library. Results come from TMDB and are ordered by popularity, not box-office revenue. You can review them in the web UI or enable filters and automatic adding.
 
-## 🎯 Why Bollyarr?
-
-- **Stay Current** - Never miss trending movies that everyone's talking about
-- **Save Time** - No more manually searching for and adding popular films  
-- **Smart Automation** - Automatically add movies based on your preferences
-- **Family Friendly** - Keep your media server stocked with what people actually want to watch
-
-## 🤔 Why Not Seerr?
-
-Seerr is excellent for request-based libraries where users actively request content. Bollyarr serves a different purpose:
-
-- **Automatic vs Request-Based**: Bollyarr automatically adds mainstream hits without anyone having to request them
-- **Box Office Focus**: Tracks actual commercial success, not just user requests
-- **Zero User Interaction**: Works silently in the background, no user accounts or requests needed
-- **Complementary Tool**: Use both! Seerr for specific requests, Bollyarr for mainstream coverage
-
-## 📋 Why Not Radarr Lists?
-
-While Radarr lists are useful, Bollyarr offers unique advantages:
-
-- **Box Office = Mainstream Appeal**: Tracks movies with proven commercial success, ensuring broad appeal
-- **Unbiased Selection**: Based on actual revenue data, not curator preferences or ratings
-- **Weekly Updates**: Fresh data every week, not dependent on list maintainer updates  
-- **Duplicate Prevention**: Uses Radarr API to check existing movies before adding
-- **Historical Tracking**: Build a library of movies that were culturally significant at release
-
-Bollyarr ensures your library includes the mainstream movies that dominated theaters - the films people are most likely to want to watch.
+For other regions, Bollyarr can continue to use Box Office Mojo's regional weekend charts.
 
 ## 📚 Documentation
 
 **[View the full documentation in our Wiki](https://github.com/kishlaymishra19/bollyarr/wiki)** for detailed guides, configuration options, and troubleshooting.
 
+## Indian Releases
+
+Select **India** as the region to discover Indian-origin movies with an India release date in the selected week. TMDB popularity determines the order; it is not a box-office-gross ranking.
+
+Enter the TMDB API key in the setup page. It is saved in `config/local.yaml`. Alternatively, set `TMDB_API_KEY` in the environment; that value takes precedence over the saved key.
+
 ## ✨ Key Features
 
-- **📊 [Weekly Box Office Tracking](https://github.com/kishlaymishra19/bollyarr/wiki/Box-Office-Tracking)** - Automatically fetches top 10 movies from Box Office Mojo
-- **🔄 [Radarr Integration](https://github.com/kishlaymishra19/bollyarr/wiki/Configuration-Guide#radarr-connection)** - Seamlessly checks and adds movies to your library
-- **🗂️ [Genre‑Based Root Folders](https://github.com/kishlaymishra19/bollyarr/wiki/Genre-Based-Root-Folders)** - Organize movies into folders by genre
-- **⚡ [Auto-Add Movies](https://github.com/kishlaymishra19/bollyarr/wiki/Configuration-Guide#automation-settings)** - Automatically add trending movies with smart filters
-- **🔍 [Advanced Custom Filtering](https://github.com/kishlaymishra19/bollyarr/wiki/Configuration-Guide#filter-settings)** - Fine-tune selections with genre, rating, and release year filters
-- **📅 [Scheduled Updates](https://github.com/kishlaymishra19/bollyarr/wiki/Configuration-Guide#automation-settings)** - Runs weekly on your preferred schedule
-- **🎨 [Beautiful Web UI](https://github.com/kishlaymishra19/bollyarr/wiki/Home#-visual-tour)** - Clean, responsive interface for all devices
-- **🚀 [Easy Setup](https://github.com/kishlaymishra19/bollyarr/wiki/Initial-Setup)** - Simple web-based configuration wizard
+- **Indian releases from TMDB** - Filters to Indian-origin movies with an India release date in the selected week
+- **Popularity ranking** - Uses TMDB popularity because reliable Indian weekly gross data is not available
+- **Radarr matching** - Matches discovered movies against your existing library
+- **Optional automatic adding** - Apply language, genre, rating, release-year, and other filters
+- **Weekly scheduling** - Review or process the selected release week automatically
+- **Regional charts** - Use Box Office Mojo for non-India regions
 
 ## 📋 Requirements
 
 - **Radarr** v3.0+ (required)
 - **Docker** (recommended) or Python 3.10+
-- Network access to Box Office Mojo and TMDB
+- Network access to TMDB for India, or Box Office Mojo for other regions
+- A TMDB API key when India is selected
 
 ## 🚀 Quick Start
 
@@ -77,7 +56,7 @@ docker run -d \
   ghcr.io/kishlaymishra19/bollyarr:latest
 ```
 
-Visit `http://localhost:8888` and follow the setup wizard.
+Visit `http://localhost:8888`, configure Radarr, select **India**, and enter your TMDB API key in the setup page.
 
 ### Docker Compose
 
@@ -97,24 +76,23 @@ services:
       - TZ=America/New_York  # Optional: Set your timezone
 ```
 
-**[View full installation guide →](https://github.com/kishlaymishra19/bollyarr/wiki/Installation-Guide)**
+The setup page stores the key in `config/local.yaml`. You can instead set `TMDB_API_KEY` in the environment; an environment key takes precedence over the saved key.
 
 ## ⚙️ Initial Setup
 
-1. Open your browser to `http://localhost:8888`
-2. Enter your Radarr URL and API key
-3. Configure quality profiles and preferences
-4. Save and start tracking!
+1. Open `http://localhost:8888`
+2. Enter your Radarr URL and API key, then test the connection
+3. Select **India** as the region and provide a TMDB API key
+4. Choose your quality profile, root folder, and automatic-add preferences
+5. Save; Bollyarr will use TMDB popularity to rank Indian releases for each selected week
 
 **[View detailed setup guide →](https://github.com/kishlaymishra19/bollyarr/wiki/Initial-Setup)**
 
 ## 📖 Configuration & Features
 
-- **[Box Office Tracking](https://github.com/kishlaymishra19/bollyarr/wiki/Box-Office-Tracking)** - How weekly tracking works
-- **[Configuration Guide](https://github.com/kishlaymishra19/bollyarr/wiki/Configuration-Guide)** - All settings explained
-- **[Auto-Add Movies](https://github.com/kishlaymishra19/bollyarr/wiki/Configuration-Guide#auto-add-movies)** - Automatic movie additions with filters
-- **[Genre-Based Root Folders](https://github.com/kishlaymishra19/bollyarr/wiki/Genre-Based-Root-Folders)** - Smart content organization
-- **[API Reference](https://github.com/kishlaymishra19/bollyarr/wiki/API-Reference)** - REST API documentation
+- [India releases](#indian-releases) - TMDB filters and API key setup
+- [Configuration](#advanced-configuration) - Region, timeout, and environment options
+- [API](#api-access) - REST API access
 
 ## 🔧 Advanced Configuration
 
@@ -183,6 +161,7 @@ GNU General Public License v3.0 - see [LICENSE](LICENSE) for details.
 
 ## Acknowledgments
 
+- [Boxarr](https://github.com/iongpt/boxarr), the original project this fork builds on
 - [Radarr](https://radarr.video/) for the excellent movie management platform
 - [Box Office Mojo](https://www.boxofficemojo.com/) for box office data
 - The self-hosting community for inspiration and feedback
