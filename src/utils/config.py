@@ -124,6 +124,7 @@ class Settings(BaseSettings):
         env_file_encoding="utf-8",
         case_sensitive=False,
         env_nested_delimiter="__",
+        env_ignore_empty=True,
         extra="ignore",
     )
 
@@ -421,11 +422,14 @@ class Settings(BaseSettings):
             "PORT": "boxarr_port",
             "TZ": "boxarr_scheduler_timezone",
         }
+        ignore_empty = self.model_config.get("env_ignore_empty", False)
         for field_name in self.model_fields:
-            if field_name.upper() in os.environ:
+            env_value = os.environ.get(field_name.upper())
+            if env_value is not None and (env_value != "" or not ignore_empty):
                 env_set.add(field_name)
         for env_var, field_name in special_env_map.items():
-            if env_var in os.environ:
+            env_value = os.environ.get(env_var)
+            if env_value is not None and (env_value != "" or not ignore_empty):
                 env_set.add(field_name)
         return env_set
 

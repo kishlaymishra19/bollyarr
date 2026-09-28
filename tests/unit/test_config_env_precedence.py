@@ -18,16 +18,17 @@ from src.utils.config import Settings
 def yaml_config(tmp_path: Path) -> Path:
     """Write a minimal YAML config and return its path."""
     config_file = tmp_path / "config.yaml"
-    config_file.write_text(textwrap.dedent("""\
-            boxarr:
-              port: 8888
-              scheduler:
-                timezone: Europe/London
-            radarr:
-              api_key: yaml-key-123
-              timeout: 30
-            log_level: WARNING
-            """))
+    config_file.write_text(
+        "boxarr:\n"
+        "  port: 8888\n"
+        "  scheduler:\n"
+        "    timezone: Europe/London\n"
+        "radarr:\n"
+        "  api_key: yaml-key-123\n"
+        "  timeout: 30\n"
+        "tmdb_api_key: saved-tmdb-key\n"
+        "log_level: WARNING\n"
+    )
     return config_file
 
 
@@ -81,6 +82,14 @@ class TestYAMLAppliesWhenNoEnvVar:
             env_protected = settings._get_env_set_fields()
             settings.load_from_yaml(yaml_config, env_protected_fields=env_protected)
             assert settings.radarr_timeout == 30
+
+    def test_empty_tmdb_api_key_env_does_not_override_yaml(self, yaml_config: Path) -> None:
+        with patch.dict(os.environ, {"TMDB_API_KEY": ""}, clear=False):
+            settings = _make_settings(_env_file=None)
+            env_protected = settings._get_env_set_fields()
+            settings.load_from_yaml(yaml_config, env_protected_fields=env_protected)
+
+        assert settings.tmdb_api_key == "saved-tmdb-key"
 
 
 class TestFieldDefaultWhenNeitherSet:
