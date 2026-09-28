@@ -163,7 +163,9 @@ async def aggregate_all_movies() -> List[dict]:
 
     # Convert to list and sort by best weekend gross (highest first)
     movies_list = list(movies_by_key.values())
-    movies_list.sort(key=lambda x: x.get("best_weekend_gross", 0), reverse=True)
+    movies_list.sort(
+        key=lambda movie: movie.get("best_weekend_gross") or 0, reverse=True
+    )
 
     return movies_list
 

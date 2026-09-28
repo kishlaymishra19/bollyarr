@@ -52,3 +52,40 @@ async def test_date_range_uses_iso_calendar(
     assert weeks[0].year == year
     assert weeks[0].week == week
     assert weeks[0].date_range == expected
+
+
+@pytest.mark.asyncio
+async def test_overview_sorts_movies_with_unknown_gross(tmp_path, monkeypatch):
+    weekly_pages_dir = tmp_path / "weekly_pages"
+    weekly_pages_dir.mkdir()
+    week_file = weekly_pages_dir / "2026W38.json"
+    week_file.write_text(
+        json.dumps(
+            {
+                "year": 2026,
+                "week": 38,
+                "movies": [
+                    {
+                        "title": "Indian Release",
+                        "tmdb_id": 123,
+                        "rank": 1,
+                        "weekend_gross": None,
+                    },
+                    {
+                        "title": "Grossing Release",
+                        "tmdb_id": 456,
+                        "rank": 2,
+                        "weekend_gross": 1000000,
+                    },
+                ],
+            }
+        )
+    )
+    monkeypatch.setattr(web.settings, "boxarr_data_directory", str(tmp_path))
+
+    movies = await web.aggregate_all_movies()
+
+    assert [movie["title"] for movie in movies] == [
+        "Grossing Release",
+        "Indian Release",
+    ]
